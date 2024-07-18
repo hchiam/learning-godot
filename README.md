@@ -1,4 +1,4 @@
-# Learning Godot
+# Learning Godot (game engine)
 
 Just one of the things I'm learning. https://github.com/hchiam/learning
 
