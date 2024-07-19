@@ -31,7 +31,7 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
 - you can mix scripting languages as needed (e.g. use C# only to implement complex algorithms with better performance)
 - to add an image as a texture to a Sprite2D: Inspector > Texture > click to show dropdown > Load...
 - to add a script to a node: Scene > right-click > Attach Script...
-- example GDScript:
+- example GDScripts:
   - ```gd
     extends Sprite2D
     
@@ -41,10 +41,26 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
     
     # Called when the node enters the scene tree for the first time.
     func _ready():
-    	print('Hello World!')
+      print('Hello World!')
     
     # Called every frame. 'delta' is the elapsed time since the previous frame.
     func _process(delta):
-    	var change = angular_speed * delta
-    	rotation += change # rotation is a built-in property of Sprite2D
+      var change = angular_speed * delta
+      rotation += change # rotation is a built-in property of Sprite2D
+      var velocity = Vector2.UP.rotated(rotation) * speed
+      position += velocity * delta # rotation is a built-in property of Sprite2D
+      # note: you can set a constant rotation on a RigidBody2D in the Inspector panel with: Angular > Velocity
     ```
+  - use `func _unhandled_input(event):` or use `func _process(delta):` with things like `Input.is_action_pressed("ui_left")`
+    - ```gd
+      extends Sprite2D
+      var speed = 400
+      func _process(delta):
+        var direction = 0
+        var velocity = Vector2.ZERO
+        if Input.is_action_pressed("ui_left"): # arrows on keyboard or D-pad
+          direction = -1
+        elif Input.is_action_pressed("ui_right"):
+          direction = 1
+        position += Vector2.RIGHT * direction * speed * delta
+      ```
