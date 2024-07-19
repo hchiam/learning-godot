@@ -45,6 +45,7 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
       func _on_button_pressed(): # you'll see a "->]" icon on the left side of this func
   	    set_process(not is_processing()) # toggle whether _process(delta) is running
       ```
+    - (note: the listener/target node can also be itself, e.g. Area2D `body_entered(body:Node2D)` signal `-->]` `func _on_body_entered(_body)` in the script file of same node)
   - through code (needed when creating nodes inside of a script):
     - ```gd
       func _ready():
@@ -95,7 +96,6 @@ extends Sprite2D
 var speed = 400
 func _process(delta):
   var direction = 0
-  var velocity = Vector2.ZERO
   if Input.is_action_pressed("ui_left"): # arrows on keyboard or D-pad
     direction = -1
   if Input.is_action_pressed("ui_right"):
@@ -104,16 +104,32 @@ func _process(delta):
     pass
   if Input.is_action_pressed("ui_down"):
     pass
-  if velocity.length() > 0:
-    velocity = velocity.normalized() * speed # so diagonal is same speed as orthogonal
-    $AnimatedSprite2D.play() # $AnimatedSprite2D is shorthand for getting children with get_node('AnimatedSprite2D')
-  else:
-    $AnimatedSprite2D.stop()
   position += Vector2.RIGHT * direction * speed * delta
 ```
 
 - `@export var speed = 400` lets you show the `speed` variable in the Inspector
   - **NOTE:** changing the value in the Inspector overrides this value in the script!
+
+```gd
+func _process(delta):
+  var velocity = Vector2.ZERO
+  if Input.is_action_pressed(&"move_right"): # use a StringName &"..." for faster comparison than a regular String "..."
+    velocity.x += 1
+  if Input.is_action_pressed(&"move_left"):
+    velocity.x -= 1
+  if Input.is_action_pressed(&"move_down"):
+    velocity.y += 1
+  if Input.is_action_pressed(&"move_up"):
+    velocity.y -= 1
+  if velocity.length() > 0:
+    velocity = velocity.normalized() * speed # so diagonal is same speed as orthogonal
+    $AnimatedSprite2D.play() # $AnimatedSprite2D is shorthand for getting children with get_node('AnimatedSprite2D')
+  else:
+    $AnimatedSprite2D.stop()
+  # keep in screen:
+  position += velocity * delta
+  position = position.clamp(Vector2.ZERO, screen_size)
+```
 
 ```gd
 # to rotate sprite "up" animation in 8 directions:
@@ -134,4 +150,13 @@ elif velocity.x == 0 and velocity.y > 0:
   rotation = PI
 elif velocity.x > 0 and velocity.y > 0:
   rotation = PI * 3/4
+```
+
+```gd
+signal hit
+
+func _on_body_entered(body):
+  hit.emit()
+  # must defer setting value of physics properties in a physics callback (to avoid error if while processing a collision):
+  $CollisionShape2D.set_deferred("disabled", true)
 ```
