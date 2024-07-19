@@ -66,47 +66,72 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
     # ...
     health_changed.emit(old_health, health) # technically you can pass more params but it's up to you to be consistent in code
     ```
-- example GDScripts:
-  - ```gd
-    extends Sprite2D
-    
-    # instance member variables:
-    var speed = 400
-    var angular_speed = PI # godot defaults rad angles
-    
-    # Called when the node enters the scene tree for the first time.
-    func _ready():
-      print('Hello World!')
-    
-    # Called every frame. 'delta' is the elapsed time since the previous frame.
-    func _process(delta):
-      var change = angular_speed * delta
-      rotation += change # rotation is a built-in property of Sprite2D
-      var velocity = Vector2.UP.rotated(rotation) * speed
-      position += velocity * delta # rotation is a built-in property of Sprite2D
-      # note: you can set a constant rotation on a RigidBody2D in the Inspector panel with: Angular > Velocity
-    ```
-  - use `func _unhandled_input(event):` or use `func _process(delta):` with things like `Input.is_action_pressed("ui_left")`
-    - ```gd
-      extends Sprite2D
-      var speed = 400
-      func _process(delta):
-        var direction = 0
-        var velocity = Vector2.ZERO
-        if Input.is_action_pressed("ui_left"): # arrows on keyboard or D-pad
-          direction = -1
-        if Input.is_action_pressed("ui_right"):
-          direction = 1
-        if Input.is_action_pressed("ui_up"): # not elif, so you can move diagonally
-          pass
-        if Input.is_action_pressed("ui_down"):
-          pass
-        if velocity.length() > 0:
-          velocity = velocity.normalized() * speed # so diagonal is same speed as orthogonal
-          $AnimatedSprite2D.play() # $AnimatedSprite2D is shorthand for getting children with get_node('AnimatedSprite2D')
-        else:
-          $AnimatedSprite2D.stop()
-        position += Vector2.RIGHT * direction * speed * delta
-      ```
-  - `@export var speed = 400` lets you show the `speed` variable in the Inspector
-    - **NOTE:** changing the value in the Inspector overrides this value in the script!
+## example GDScripts:
+
+```gd
+extends Sprite2D
+
+# instance member variables:
+var speed = 400
+var angular_speed = PI # godot defaults rad angles
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+  print('Hello World!')
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+  var change = angular_speed * delta
+  rotation += change # rotation is a built-in property of Sprite2D
+  var velocity = Vector2.UP.rotated(rotation) * speed
+  position += velocity * delta # rotation is a built-in property of Sprite2D
+  # note: you can set a constant rotation on a RigidBody2D in the Inspector panel with: Angular > Velocity
+```
+
+use `func _unhandled_input(event):` or use `func _process(delta):` with things like `Input.is_action_pressed("ui_left")`
+
+```gd
+extends Sprite2D
+var speed = 400
+func _process(delta):
+  var direction = 0
+  var velocity = Vector2.ZERO
+  if Input.is_action_pressed("ui_left"): # arrows on keyboard or D-pad
+    direction = -1
+  if Input.is_action_pressed("ui_right"):
+    direction = 1
+  if Input.is_action_pressed("ui_up"): # not elif, so you can move diagonally
+    pass
+  if Input.is_action_pressed("ui_down"):
+    pass
+  if velocity.length() > 0:
+    velocity = velocity.normalized() * speed # so diagonal is same speed as orthogonal
+    $AnimatedSprite2D.play() # $AnimatedSprite2D is shorthand for getting children with get_node('AnimatedSprite2D')
+  else:
+    $AnimatedSprite2D.stop()
+  position += Vector2.RIGHT * direction * speed * delta
+```
+
+- `@export var speed = 400` lets you show the `speed` variable in the Inspector
+  - **NOTE:** changing the value in the Inspector overrides this value in the script!
+
+```gd
+# to rotate sprite "up" animation in 8 directions:
+$AnimatedSprite2D.animation = &"up"
+if velocity.x < 0 and velocity.y < 0:
+  rotation = - PI * 1/4
+elif velocity.x == 0 and velocity.y < 0:
+  rotation = 0
+elif velocity.x > 0 and velocity.y < 0:
+  rotation = PI * 1/4
+elif velocity.x < 0 and velocity.y == 0:
+  rotation = - PI * 1/2
+elif velocity.x > 0 and velocity.y == 0:
+  rotation = PI * 1/2
+elif velocity.x < 0 and velocity.y > 0:
+  rotation = - PI * 3/4
+elif velocity.x == 0 and velocity.y > 0:
+  rotation = PI
+elif velocity.x > 0 and velocity.y > 0:
+  rotation = PI * 3/4
+```
