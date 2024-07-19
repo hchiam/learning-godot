@@ -69,6 +69,8 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
     ```
 ## example GDScripts:
 
+For syntax notes like `^"`, Ctrl+F in https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html
+
 ```gd
 extends Sprite2D
 
