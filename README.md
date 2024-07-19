@@ -7,6 +7,8 @@ https://www.youtube.com/watch?v=QKgTZWbwD1U
 https://github.com/godotengine/godot
 
 intro: https://docs.godotengine.org/en/stable/getting_started/introduction/index.html 
+- intro, 2D: https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html
+- intro, 3D: https://docs.godotengine.org/en/stable/getting_started/first_3d_game/index.html
 
 best practices: https://docs.godotengine.org/en/stable/tutorials/best_practices/introduction_best_practices.html
 - physics: https://docs.godotengine.org/en/stable/tutorials/physics/index.html
