@@ -16,6 +16,7 @@ best practices: https://docs.godotengine.org/en/stable/tutorials/best_practices/
   - example code for player-hosted lobby: https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html#example-lobby-implementation
 
 GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/index.html#toc-learn-scripting-gdscript
+- For syntax notes on things like `&"` and `^"`, Ctrl+F in this page: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html
 
 ## miscellaneous notes
 
@@ -67,9 +68,8 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
     # ...
     health_changed.emit(old_health, health) # technically you can pass more params but it's up to you to be consistent in code
     ```
-## example GDScripts:
 
-For syntax notes like `^"`, Ctrl+F in https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html
+## example GDScripts:
 
 ```gd
 extends Sprite2D
