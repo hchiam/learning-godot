@@ -16,7 +16,7 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
 
 - in my mind, there's only 2 core concepts in godot: nodes and signals:
   - scenes are the same thing as nodes. everything's nested in trees of nodes. simpler than thinking in MVC (Model-View-Controller).
-  - signals enable "notification" callbacks. a node sends out a signal, and you can attach nodes to listen to that signal.
+  - signals enable "notification" callbacks (observer pattern). a node sends out a signal, and you can attach nodes to listen to that signal.
 - cmd + b = run from main
 - cmd + r = run current scene
 - cmd + . = stop runing
@@ -64,3 +64,5 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
           direction = 1
         position += Vector2.RIGHT * direction * speed * delta
       ```
+- connect a signal: select a node > Node panel > double-click a signal for that node > select a node that has a script (a receiver method will be auto-named) > Connect
+  - the **_listener_** node will have the callback written in its script
