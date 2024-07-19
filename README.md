@@ -28,3 +28,4 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
   - you can customize one of those instances' PhysicsMaterial (a resource) in the Inspector panel with: down arrow dropdown > Make Unique > props unlocked!
 - cmd + d = duplicate
 - cmd + c --> cmd + v = create child
+- you can mix scripting languages as needed (e.g. use C# only to implement complex algorithms with better performance)
