@@ -71,6 +71,7 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
         position += Vector2.RIGHT * direction * speed * delta
       ```
   - `@export var speed = 400` lets you show the `speed` variable in the Inspector
+    - **NOTE:** changing the value in the Inspector overrides this value in the script!
 - connect a signal:
   - through the editor: select a node > Node panel > double-click a signal for that node > select a node that has a script (a receiver method will be auto-named) > Connect
     - the **_listener_**/target node will have the callback written in its script
