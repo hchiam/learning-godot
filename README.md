@@ -24,7 +24,8 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
   - signals enable "notification" callbacks (observer pattern). a node sends out a signal, and you can attach nodes to listen to that signal.
 - cmd + b = run from main
 - cmd + r = run current scene
-- cmd + . = stop runing
+- cmd + . = stop running
+- option + spacebar = search help documentation
 - **_cmd + shift + A_**
   - = "import" an _instance_ of an other scene as a child node, which packages/hides that other scene's own children from view of the current scene
   - you have to save the original instance for the "imported" instances to update to match
