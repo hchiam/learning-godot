@@ -31,3 +31,20 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
 - you can mix scripting languages as needed (e.g. use C# only to implement complex algorithms with better performance)
 - to add an image as a texture to a Sprite2D: Inspector > Texture > click to show dropdown > Load...
 - to add a script to a node: Scene > right-click > Attach Script...
+- example GDScript:
+  - ```gd
+    extends Sprite2D
+    
+    # instance member variables:
+    var speed = 400
+    var angular_speed = PI # godot defaults rad angles
+    
+    # Called when the node enters the scene tree for the first time.
+    func _ready():
+    	print('Hello World!')
+    
+    # Called every frame. 'delta' is the elapsed time since the previous frame.
+    func _process(delta):
+    	var change = angular_speed * delta
+    	rotation += change # rotation is a built-in property of Sprite2D
+    ```
