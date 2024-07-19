@@ -11,6 +11,7 @@ intro: https://docs.godotengine.org/en/stable/getting_started/introduction/index
 best practices: https://docs.godotengine.org/en/stable/tutorials/best_practices/introduction_best_practices.html
 - physics: https://docs.godotengine.org/en/stable/tutorials/physics/index.html
 - networking: https://docs.godotengine.org/en/stable/tutorials/networking/index.html
+  - example code for player-hosted lobby: https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html#example-lobby-implementation
 
 GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/index.html#toc-learn-scripting-gdscript
 
