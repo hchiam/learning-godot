@@ -24,10 +24,11 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
   - scenes are the same thing as nodes. everything's nested in trees of nodes. simpler than thinking in MVC (Model-View-Controller).
   - signals enable "notification" callbacks (observer pattern). a node sends out a signal, and you can attach nodes to listen to that signal.
 - keyboard shortcuts:
+  - option + spacebar = search help documentation
+    - (random tip: you can hover over a lot of things in the panels to get more info about them, like even titles/dropdowns/buttons/labels/fields)
   - cmd + b = run from main
   - cmd + r = run current scene
   - cmd + . = stop running
-  - option + spacebar = search help documentation
   - **_cmd + shift + A_**
     - = "import" an _instance_ of an other scene as a child node, which packages/hides that other scene's own children from view of the current scene
     - you have to save the original instance for the "imported" instances to update to match
