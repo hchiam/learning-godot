@@ -8,7 +8,9 @@ https://github.com/godotengine/godot
 
 intro: https://docs.godotengine.org/en/stable/getting_started/introduction/index.html 
 
-networking and physics: https://docs.godotengine.org/en/stable/tutorials/best_practices/introduction_best_practices.html
+best practices: https://docs.godotengine.org/en/stable/tutorials/best_practices/introduction_best_practices.html
+- physics: https://docs.godotengine.org/en/stable/tutorials/physics/index.html
+- networking: https://docs.godotengine.org/en/stable/tutorials/networking/index.html
 
 GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/index.html#toc-learn-scripting-gdscript
 
