@@ -67,5 +67,31 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
           direction = 1
         position += Vector2.RIGHT * direction * speed * delta
       ```
-- connect a signal: select a node > Node panel > double-click a signal for that node > select a node that has a script (a receiver method will be auto-named) > Connect
-  - the **_listener_** node will have the callback written in its script
+- connect a signal:
+  - through the editor: select a node > Node panel > double-click a signal for that node > select a node that has a script (a receiver method will be auto-named) > Connect
+    - the **_listener_**/target node will have the callback written in its script
+    - ```gd
+      func _on_button_pressed(): # you'll see a "->]" icon on the left side of this func
+  	    set_process(not is_processing()) # toggle whether _process(delta) is running
+      ```
+  - through code (needed when creating nodes inside of a script):
+    - ```gd
+      func _ready():
+        var timer: Timer = get_node('Timer') # 'Timer' must be already set up as a child node named 'Timer'
+        # on the timer's timeout event, call _on_timer_timeout()
+        timer.timeout.connect(_on_timer_timeout)
+      
+      func _on_timer_timeout():
+        visible = not visible
+      ```
+- custom signal
+  - ```gd
+    signal health_depleted
+    # ...
+    health_depleted.emit()
+    ```
+  - ```gd
+    signal health_changed(old_value, new_value) # these params show up in Node panel
+    # ...
+    health_changed.emit(old_health, health) # technically you can pass more params but it's up to you to be consistent in code
+    ```
