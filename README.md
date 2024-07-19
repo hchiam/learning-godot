@@ -14,6 +14,9 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
 
 ## miscellaneous notes
 
+- in my mind, there's only 2 core concepts in godot: nodes and signals:
+  - scenes are the same thing as nodes. everything's nested in trees of nodes. simpler than thinking in MVC (Model-View-Controller).
+  - signals enable "notification" callbacks. a node sends out a signal, and you can attach nodes to listen to that signal.
 - cmd + b = run from main
 - cmd + r = run current scene
 - cmd + . = stop runing
@@ -22,5 +25,6 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
   - you have to save the original instance for the "imported" instances to update to match
   - you can customize one of those instances, which overrides the original instance's properties
     - you can show an instance's children with: right-click > checkmark Editable Children
+  - you can customize one of those instances' PhysicsMaterial (a resource) in the Inspector panel with: down arrow dropdown > Make Unique > props unlocked!
 - cmd + d = duplicate
 - cmd + c --> cmd + v = create child
