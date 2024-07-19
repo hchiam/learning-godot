@@ -74,6 +74,9 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
           pass
         if velocity.length() > 0:
           velocity = velocity.normalized() * speed # so diagonal is same speed as orthogonal
+          $AnimatedSprite2D.play() # $AnimatedSprite2D is shorthand for getting children with get_node('AnimatedSprite2D')
+        else:
+          $AnimatedSprite2D.stop()
         position += Vector2.RIGHT * direction * speed * delta
       ```
   - `@export var speed = 400` lets you show the `speed` variable in the Inspector
