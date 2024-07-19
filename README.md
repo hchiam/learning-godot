@@ -114,23 +114,31 @@ func _process(delta):
   - **NOTE:** changing the value in the Inspector overrides this value in the script!
 
 ```gd
+var speed = 400
+var screen_size
+
+func _ready():
+  screen_size = get_viewport_rect().size
+
 func _process(delta):
   var velocity = Vector2.ZERO
-  if Input.is_action_pressed(&"move_right"): # use a StringName &"..." for faster comparison than a regular String "..."
+  if Input.is_action_pressed(&"ui_right"): # use a StringName &"..." for faster comparison than a regular String "..."
     velocity.x += 1
-  if Input.is_action_pressed(&"move_left"):
+  if Input.is_action_pressed(&"ui_left"):
     velocity.x -= 1
-  if Input.is_action_pressed(&"move_down"):
+  if Input.is_action_pressed(&"ui_down"):
     velocity.y += 1
-  if Input.is_action_pressed(&"move_up"):
+  if Input.is_action_pressed(&"ui_up"):
     velocity.y -= 1
   if velocity.length() > 0:
     velocity = velocity.normalized() * speed # so diagonal is same speed as orthogonal
     $AnimatedSprite2D.play() # $AnimatedSprite2D is shorthand for getting children with get_node('AnimatedSprite2D')
   else:
     $AnimatedSprite2D.stop()
-  # keep in screen:
+  
   position += velocity * delta
+  
+  # keep in screen:
   position = position.clamp(Vector2.ZERO, screen_size)
 ```
 
@@ -162,4 +170,12 @@ func _on_body_entered(body):
   hit.emit()
   # must defer setting value of physics properties in a physics callback (to avoid error if while processing a collision):
   $CollisionShape2D.set_deferred("disabled", true)
+```
+
+```gd
+your_array.pick_random() # instead of your_array[randi() % your_array.size()]
+```
+
+```gd
+queue_free() # vs free()
 ```
