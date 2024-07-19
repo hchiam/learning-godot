@@ -66,12 +66,14 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
         var velocity = Vector2.ZERO
         if Input.is_action_pressed("ui_left"): # arrows on keyboard or D-pad
           direction = -1
-        elif Input.is_action_pressed("ui_right"):
+        if Input.is_action_pressed("ui_right"):
           direction = 1
         if Input.is_action_pressed("ui_up"): # not elif, so you can move diagonally
           pass
-        elif Input.is_action_pressed("ui_down"):
+        if Input.is_action_pressed("ui_down"):
           pass
+        if velocity.length() > 0:
+          velocity = velocity.normalized() * speed # so diagonal is same speed as orthogonal
         position += Vector2.RIGHT * direction * speed * delta
       ```
   - `@export var speed = 400` lets you show the `speed` variable in the Inspector
