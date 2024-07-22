@@ -225,3 +225,20 @@ await $MessageTimer.timeout
 # basically "sleep" or "delay": create a one-shot timer for 1.0 second and await for it to finish:
 await get_tree().create_timer(1.0).timeout # instead of using a Timer node
 ```
+
+Debugging tips from DevWorm: https://www.youtube.com/watch?v=PB6YPnRAyjE
+
+- ```gd
+  func _input(event: InputEvents):
+    if event.is_action_pressed('1') and OS.is_debug_build():
+      print('-----------------')
+      print('a', a)
+      print('few', few)
+      print('vars', vars) # at the same time
+      print('-----------------')
+  ```
+- ```gd
+  push_error('this error message shows up in the Errors tab and is clickable to go to the place in the code')
+  # or you can also use breakpoints, then step into or step over (in Debugger)
+  ```
+- there are lots of toggle under the Debug menu for things like "Visible Collision Shapes" or "Visible Paths"
