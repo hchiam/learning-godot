@@ -71,6 +71,7 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
     health_changed.emit(old_health, health) # technically you can pass more params but it's up to you to be consistent in code
     ```
 - a `CanvasLayer`'s Inspector panel has a Layer property for a layer number that behaves like [`z-index` in CSS](https://developer.mozilla.org/en-US/docs/Web/CSS/z-index)
+  - (very different thing from a collision layer)
 - use a `ColorRect` for a solid colour background
 - use a `TextureRect` for an image background
 - use an `AudioStreamPlayer` for music/sound: Inspector > AudioStreamPlayer > Stream > (you can expand to show more settings, like Loop)
