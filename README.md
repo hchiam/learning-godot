@@ -83,6 +83,13 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
 - if you want to be able to delete all mobs, including those from previous rounds:
   - click on a node > Node panel > Groups > Add a group named "mobs"
   - add in main script: `get_tree().call_group("mobs", "queue_free")` to call `queue_free` on all nodes that are part of group `"mobs"` to delete themselves
+- `CharacterBody3D` = `Area` or `RigidBody`, but 3D and controlled by player instead of by physics engine
+  - consider adding child `Node3D` as pivot
+    - consider adding child `Node3D` as character 3D model, e.g. a .glb file, which can be exported from Blender by exporting to GLTF
+  - consider adding child `CollisionShape3D`
+  - consider adding child `Area3D` to detect collisions with other nodes
+    - consider adding children `CollisionShape3D`s
+  - consider adding child `AnimationPlayer`
 
 ## more example GDScripts:
 
