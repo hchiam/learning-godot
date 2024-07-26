@@ -21,6 +21,8 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
 
 ## miscellaneous notes
 
+For Ctrl+F convenience to remind myself of things:
+
 - in my mind, there's only really 2 core concepts in godot: nodes and signals:
   - scenes are the same thing as nodes, just isolated so you can run a sub-tree in isolation. everything's nested in trees of nodes. simpler than thinking in MVC (Model-View-Controller).
   - signals enable "notification" callbacks (observer pattern). a node sends out a signal, and you can attach nodes to listen to that signal.
