@@ -19,6 +19,10 @@ best practices: https://docs.godotengine.org/en/stable/tutorials/best_practices/
 GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/index.html#toc-learn-scripting-gdscript
 - For syntax notes on things like `&"` and `^"`, Ctrl+F in this page: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html
 
+animation tips from DevWorm: https://youtu.be/XbDh2GAshBA?feature=shared
+
+some helpful Godot plugins: https://youtu.be/bKNmsae5zXk?feature=shared
+
 ## miscellaneous notes
 
 For Ctrl+F convenience to remind myself of things:
