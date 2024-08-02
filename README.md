@@ -18,6 +18,7 @@ best practices: https://docs.godotengine.org/en/stable/tutorials/best_practices/
 
 GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/index.html#toc-learn-scripting-gdscript
 - For syntax notes on things like `&"` and `^"`, Ctrl+F in this page: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html
+  - `$Player.position` and `$UserInterface/Retry.show()`
 
 animation tips from DevWorm: https://youtu.be/XbDh2GAshBA?feature=shared
 
@@ -97,7 +98,7 @@ For Ctrl+F convenience to remind myself of things:
   - consider adding child `Node3D` as pivot named `Pivot`
     - consider adding child `Node3D` as character 3D model named `Character`, e.g. a .glb file, which can be exported from Blender by exporting to GLTF
   - consider adding child `CollisionShape3D` named `CollisionShape` to collide with environment
-  - consider adding child `Area3D` named `MobDetector` to detect collisions with other characters
+  - consider adding child `Area3D` named `MobDetector` to detect collisions with other characters, but with "Monitorable" prop unchecked so other nodes can't detect it
     - consider adding several children `CollisionShape3D`s to the `MobDetector` `Area3D`
   - consider adding child `AnimationPlayer`
 - `CharacterBody3D` has a native `move_and_slide()` function you can call at the end of your `func _physics_process(delta):` to smooth out motion
