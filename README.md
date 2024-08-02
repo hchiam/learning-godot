@@ -124,6 +124,22 @@ For Ctrl+F convenience to remind myself of things:
   - small `Far`, e.g `100`: better shadow quality, but can't see farther-away objects
 - for how to place points on a `Path3D`, see the instructions+images at https://docs.godotengine.org/en/stable/getting_started/first_3d_game/05.spawning_mobs.html
   - spawn points setup: `PathFollow3D` node as _child_ of `Path3D` node; `Path` = path, `PathFollow` = to select locations on that path
+- GUI? add a `Control`! as well as the other things nested under it in the search for the "Create New Node" window
+	- e.g. `Label`, which has a default `text` property: `text = "Score: %s" % score` or `text = "Score: %s" % [score,]`
+ 		- (note: in a more complex game, you might want to store data like score in a dedicated object instead of in a `Label.text`)
+	- the `Control`'s Theme panel will be accessible in a bottom tab
+	- the `Control`'s children will inherit its theme, e.g. font (Inspector > Control > Theme > Default Font > click to expand details > Resource > Path > choose a font file).
+ 	- to make a child `Label` or `ColorRect` position relative to or fill its parent `Control` and make that parent in turn fill the viewport too:
+  	- select the `ColorRect` > click the green smash-bros-like icon for Anchor preset in the top bar > Full Rect (anchor value is relative to its parent).
+  	- select the `Control` > Inspector > Control > Layout > Anchors preset > Full Rect (anchor value is relative to its parent).
+- nodes (like `mob`) created in code, need code to connect their signals:
+	- e.g.: `mob.squashed.connect($UserInterface/ScoreLabel._on_Mob_squashed)` in Main.gd, where:
+		- `signal squashed` in Mob.gd
+  	- `func _on_Mob_squashed():` in Main/UserInterface/ScoreLabel.gd
+- to have music [autoload](https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html#doc-singletons-autoload) and automatically restart the music on game start:
+	- attach music to the root viewport node (**_NOT under the Main node!_**): new scene > add `AudioStreamPlayer` > Inspector > AudioStreamPlayer > Stream > click to expand > Resource > select an audio file and make sure to checkmark Autoplay! you can also see if it loops in the expanded Stream menu items.
+ 	- [autoload](https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html#doc-singletons-autoload) music: Project > Project Settings... > Autoload > Add (Path = scene node, e.g. AudioStreamPlayer.tscn)
+  	- will restart with game restart triggered by code: `get_tree().reload_current_scene() # get the SceneTree`
 
 ## more example GDScripts:
 
@@ -138,7 +154,7 @@ var angular_speed = PI # godot defaults rad angles
 func _ready():
   print('Hello World!')
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame. 'delta' is the elapsedf time since the previous frame.
 func _process(delta): # use _physics_process for more consistent/smoother physics timing
   var change = angular_speed * delta
   rotation += change # rotation is a built-in property of Sprite2D
@@ -147,7 +163,16 @@ func _process(delta): # use _physics_process for more consistent/smoother physic
   # note: you can set a constant rotation on a RigidBody2D in the Inspector panel with: Angular > Velocity
 ```
 
-use `func _unhandled_input(event):` or use `func _process(delta):`/`func _physics_process(delta):` with things like `Input.is_action_pressed("ui_left")`
+use `func _unhandled_input(event):` to handle any input:
+
+```gd
+func _unhandled_input(event):
+  if event.is_action_pressed("ui_accept") and $UserInterface/Retry.visible:
+    get_tree().reload_current_scene() # restart SceneTree = restart game
+    # get_tree() gets the global singleton SceneTree, which is what holds the root viewport that in turn holds all root scenes/nodes
+```
+
+use `func _process(delta):`/`func _physics_process(delta):` with things like `Input.is_action_pressed("ui_left")`:
 
 ```gd
 extends Sprite2D
