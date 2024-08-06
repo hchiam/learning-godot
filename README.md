@@ -6,6 +6,8 @@ https://www.youtube.com/watch?v=QKgTZWbwD1U
 
 https://github.com/godotengine/godot
 
+templates: https://github.com/godotengine/godot-demo-projects (and their [demos](https://godotengine.github.io/godot-demo-projects/))
+
 intro: https://docs.godotengine.org/en/stable/getting_started/introduction/index.html 
 - intro, 2D: https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html + completed [2D tutorial code](https://github.com/godotengine/godot-demo-projects/tree/master/2d/dodge_the_creeps)
 - intro, 3D: https://docs.godotengine.org/en/stable/getting_started/first_3d_game/index.html
@@ -23,6 +25,12 @@ GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/in
 animation tips from DevWorm: https://youtu.be/XbDh2GAshBA?feature=shared
 
 some helpful Godot plugins: https://youtu.be/bKNmsae5zXk?feature=shared
+
+other suggested links in the [manual](https://docs.godotengine.org/en/stable/tutorials/best_practices/index.html):
+- [Scripting](https://docs.godotengine.org/en/stable/tutorials/scripting/index.html#toc-scripting-core-features) section of the [manual](https://docs.godotengine.org/en/stable/tutorials/best_practices/index.html)
+- [3D](https://docs.godotengine.org/en/stable/tutorials/3d/index.html#toc-learn-features-3d) section of the [manual](https://docs.godotengine.org/en/stable/tutorials/best_practices/index.html)
+- [Physics](https://docs.godotengine.org/en/stable/tutorials/physics/index.html#toc-learn-features-physics) section of the [manual](https://docs.godotengine.org/en/stable/tutorials/best_practices/index.html)
+- [Inputs](https://docs.godotengine.org/en/stable/tutorials/inputs/index.html#toc-learn-features-inputs) section of the [manual](https://docs.godotengine.org/en/stable/tutorials/best_practices/index.html)
 
 ## miscellaneous notes
 
@@ -45,6 +53,10 @@ For Ctrl+F convenience to remind myself of things:
     - you can customize one of those instances' PhysicsMaterial (a resource) in the Inspector panel with: down arrow dropdown > **_Make Unique_** > props unlocked!
   - cmd + d = duplicate
   - cmd + c --> cmd + v = create child
+  - you can _click_ in the animation panel and _then_ control animations:
+		- d = play
+    - s = stop
+    - s double-tap = start
 - you can mix scripting languages as needed (e.g. use C# only to implement complex algorithms with better performance)
 - to add an image as a texture to a Sprite2D: Inspector > Texture > click to show dropdown > Load...
 - to add a script to a node: Scene > right-click > Attach Script...
@@ -95,7 +107,7 @@ For Ctrl+F convenience to remind myself of things:
   - click on a node > Node panel > Groups > Add a group named "mobs" (this will let the code differentiate mob from ground collisions)
   - add in main script: `get_tree().call_group("mobs", "queue_free")` to call `queue_free` on all nodes that are part of group `"mobs"` to delete themselves
 - `CharacterBody3D` = `Area` or `RigidBody`, but 3D and controlled by player instead of by physics engine
-  - consider adding child `Node3D` as pivot named `Pivot`
+  - consider adding child `Node3D` as pivot named `Pivot` to isolate the animations on this node's child `Character` from overriding code-set values on the `Pivot`'s properties, letting you layer motion/rotations/offset/etc. on top of the child `Character`'s animation
     - consider adding child `Node3D` as character 3D model named `Character`, e.g. a .glb file, which can be exported from Blender by exporting to GLTF
   - consider adding child `CollisionShape3D` named `CollisionShape` to collide with environment
   - consider adding child `Area3D` named `MobDetector` to detect collisions with other characters, but with "Monitorable" prop unchecked so other nodes can't detect it
@@ -103,8 +115,8 @@ For Ctrl+F convenience to remind myself of things:
   - consider adding child `AnimationPlayer`
 - `CharacterBody3D` has a native `move_and_slide()` function you can call at the end of your `func _physics_process(delta):` to smooth out motion
 - `CharacterBody3D` has a native `look_at_from_position(start_position, position_of_target_to_face_towards, Vector3.UP)` function (3rd param = which way is up axis to rotate around)
-- `CharacterBody3D` has a native `rotate_y(randf_range(-PI / 4, PI / 4))` function that you can call after `look_at_from_position` to further adjust rotation
-- `CharacterBody3D` has a native `is_on_floor()` function
+- `CharacterBody3D` has a native `rotate_y(randf_range(-PI / 4, PI / 4))` function that you can call after `look_at_from_position` to further adjust rotation.
+- `CharacterBody3D` has a native `is_on_floor()` function that uses `up_direction` and `floor_max_angle` to determine whether a surface is a "floor".
 - rotate the player with `basis = Basis.looking_at(direction)`
 - collision layers:
   - **layer** = the "group"/layer the node is in; **mask** = the "group(s)"/layer(s) the node can collide with/listen to.
@@ -140,7 +152,10 @@ For Ctrl+F convenience to remind myself of things:
 	- attach music to the root viewport node (**_NOT under the Main node!_**): new scene > add `AudioStreamPlayer` > Inspector > AudioStreamPlayer > Stream > click to expand > Resource > select an audio file and make sure to checkmark Autoplay! you can also see if it loops in the expanded Stream menu items.
  	- [autoload](https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html#doc-singletons-autoload) music: Project > Project Settings... > Autoload > Add (Path = scene node, e.g. AudioStreamPlayer.tscn)
   	- will restart with game restart triggered by code: `get_tree().reload_current_scene() # get the SceneTree`
-- stylistic tip for animations: in general, _don't_ time and space everything evenly = offset and contrast give a certain feeling
+- animation Autoplay on Load: the button turns blue when on, and looks like an A+ inside an arrow.
+- stylistic tip for animations: in general, _don't_ time and space everything evenly = offset and contrast give a certain feeling.
+- you can copy an animation if copying to a similar structure of nodes:
+	- select an `AnimationPlayer` node > select an animation > click on "Animation" > Manage Animations... > click on the copy icon (looks ike 2 pieces of paper stacked) > OK > select a similar node > select its `AnimationPlayer` node > click on "Animation" > Manage Animations... > click on the paste icon (looks like a clipboard)
 
 ## more example GDScripts:
 
@@ -380,4 +395,16 @@ func die():
 
 func _on_MobDetector_body_entered(_body):
 	die()
+```
+
+```gd
+# Player.gd:
+
+# faster:
+$AnimationPlayer.speed_scale = 4
+# or normal speed:
+$AnimationPlayer.speed_scale = 1
+
+# ...
+$Pivot.rotation.x = PI / 6 * velocity.y / jump_impulse
 ```
