@@ -2,35 +2,32 @@
 
 Just one of the things I'm learning. https://github.com/hchiam/learning
 
-https://www.youtube.com/watch?v=QKgTZWbwD1U
+[Godot in 100 Seconds by Fireship.io](https://www.youtube.com/watch?v=QKgTZWbwD1U)
 
 https://github.com/godotengine/godot
 
 templates: https://github.com/godotengine/godot-demo-projects (and their [demos](https://godotengine.github.io/godot-demo-projects/))
 
-intro: https://docs.godotengine.org/en/stable/getting_started/introduction/index.html 
-- intro, 2D: https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html + completed [2D tutorial code](https://github.com/godotengine/godot-demo-projects/tree/master/2d/dodge_the_creeps)
-- intro, 3D: https://docs.godotengine.org/en/stable/getting_started/first_3d_game/index.html
+intro tutorials:
+- [general intro](https://docs.godotengine.org/en/stable/getting_started/introduction/index.html)
+- [2D intro tutorial](https://docs.godotengine.org/en/stable/getting_started/first_2d_game/index.html) + completed [2D tutorial code](https://github.com/godotengine/godot-demo-projects/tree/master/2d/dodge_the_creeps)
+- [3D intro tutorial](https://docs.godotengine.org/en/stable/getting_started/first_3d_game/index.html) + completed [3D tutorial code](https://github.com/godotengine/godot-demo-projects/tree/master/3d/squash_the_creeps)
 
-best practices: https://docs.godotengine.org/en/stable/tutorials/best_practices/introduction_best_practices.html
-- physics: https://docs.godotengine.org/en/stable/tutorials/physics/index.html
-- multi-player networking: https://docs.godotengine.org/en/stable/tutorials/networking/index.html
-  - example code for player-hosted lobby: https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html#example-lobby-implementation
-  - https://github.com/godotengine/godot-demo-projects/tree/master/networking
-
-GDScript: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/index.html#toc-learn-scripting-gdscript
-- For syntax notes on things like `&"` and `^"`, Ctrl+F in this page: https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html
-  - `$Player.position` and `$UserInterface/Retry.show()`
+best practices [manual](https://docs.godotengine.org/en/stable/tutorials/best_practices/introduction_best_practices.html):
+- [physics](https://docs.godotengine.org/en/stable/tutorials/physics/index.html)
+- [multi-player networking](https://docs.godotengine.org/en/stable/tutorials/networking/index.html):
+  - [example code snippet for player-hosted lobby](https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html#example-lobby-implementation)
+  - [template project for networking](https://github.com/godotengine/godot-demo-projects/tree/master/networking)
+- [inputs](https://docs.godotengine.org/en/stable/tutorials/inputs/index.html)
+- [3D reference](https://docs.godotengine.org/en/stable/tutorials/3d/index.html)
+- [scripting](https://docs.godotengine.org/en/stable/tutorials/scripting/index.html):
+	- [GDScript](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/index.html#toc-learn-scripting-gdscript)
+		- For syntax notes on things like `&"` and `^"`, Ctrl+F in this page: [GDScript basics, including syntax notes](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html)
+		  - `$Player.position` and `$UserInterface/Retry.show()`
 
 animation tips from DevWorm: https://youtu.be/XbDh2GAshBA?feature=shared
 
 some helpful Godot plugins: https://youtu.be/bKNmsae5zXk?feature=shared
-
-other suggested links in the [manual](https://docs.godotengine.org/en/stable/tutorials/best_practices/index.html):
-- [Scripting](https://docs.godotengine.org/en/stable/tutorials/scripting/index.html#toc-scripting-core-features) section of the [manual](https://docs.godotengine.org/en/stable/tutorials/best_practices/index.html)
-- [3D](https://docs.godotengine.org/en/stable/tutorials/3d/index.html#toc-learn-features-3d) section of the [manual](https://docs.godotengine.org/en/stable/tutorials/best_practices/index.html)
-- [Physics](https://docs.godotengine.org/en/stable/tutorials/physics/index.html#toc-learn-features-physics) section of the [manual](https://docs.godotengine.org/en/stable/tutorials/best_practices/index.html)
-- [Inputs](https://docs.godotengine.org/en/stable/tutorials/inputs/index.html#toc-learn-features-inputs) section of the [manual](https://docs.godotengine.org/en/stable/tutorials/best_practices/index.html)
 
 ## miscellaneous notes
 
