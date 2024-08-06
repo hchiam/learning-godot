@@ -140,6 +140,7 @@ For Ctrl+F convenience to remind myself of things:
 	- attach music to the root viewport node (**_NOT under the Main node!_**): new scene > add `AudioStreamPlayer` > Inspector > AudioStreamPlayer > Stream > click to expand > Resource > select an audio file and make sure to checkmark Autoplay! you can also see if it loops in the expanded Stream menu items.
  	- [autoload](https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html#doc-singletons-autoload) music: Project > Project Settings... > Autoload > Add (Path = scene node, e.g. AudioStreamPlayer.tscn)
   	- will restart with game restart triggered by code: `get_tree().reload_current_scene() # get the SceneTree`
+- stylistic tip for animations: in general, _don't_ time and space everything evenly = offset and contrast give a certain feeling
 
 ## more example GDScripts:
 
