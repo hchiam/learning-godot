@@ -17,7 +17,10 @@ best practices [manual](https://docs.godotengine.org/en/stable/tutorials/best_pr
 - [physics](https://docs.godotengine.org/en/stable/tutorials/physics/index.html)
 - [multi-player networking](https://docs.godotengine.org/en/stable/tutorials/networking/index.html):
   - [example code snippet for player-hosted lobby](https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html#example-lobby-implementation)
-  - [template project for networking](https://github.com/godotengine/godot-demo-projects/tree/master/networking)
+  - [template projects for networking](https://github.com/godotengine/godot-demo-projects/tree/master/networking)
+  	- [webrtc_minimal](https://github.com/godotengine/godot-demo-projects/tree/master/networking/webrtc_minimal)
+    - [multiplayer_pong](https://github.com/godotengine/godot-demo-projects/tree/master/networking/multiplayer_pong)
+    - [websocket_chat](https://github.com/godotengine/godot-demo-projects/tree/master/networking/websocket_chat)
 - [inputs](https://docs.godotengine.org/en/stable/tutorials/inputs/index.html)
 - [3D reference](https://docs.godotengine.org/en/stable/tutorials/3d/index.html)
 - [scripting](https://docs.godotengine.org/en/stable/tutorials/scripting/index.html):
