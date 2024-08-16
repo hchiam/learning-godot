@@ -35,6 +35,8 @@ animation tips from DevWorm: https://youtu.be/XbDh2GAshBA?feature=shared
 
 some helpful Godot plugins: https://youtu.be/bKNmsae5zXk?feature=shared
 
+[multiplayer godot repo](https://github.com/hchiam/multiplayer-godot) from [Battery Acid Dev](https://www.youtube.com/watch?v=V4a_J38XdHk)
+
 ## miscellaneous notes
 
 For Ctrl+F convenience to remind myself of things:
