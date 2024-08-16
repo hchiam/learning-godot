@@ -18,22 +18,22 @@ best practices [manual](https://docs.godotengine.org/en/stable/tutorials/best_pr
 - [multi-player networking](https://docs.godotengine.org/en/stable/tutorials/networking/index.html):
   - [example code snippet for player-hosted lobby](https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html#example-lobby-implementation)
   - [template projects for networking](https://github.com/godotengine/godot-demo-projects/tree/master/networking)
-  	- [webrtc_minimal](https://github.com/godotengine/godot-demo-projects/tree/master/networking/webrtc_minimal)
+    - [webrtc_minimal](https://github.com/godotengine/godot-demo-projects/tree/master/networking/webrtc_minimal)
     - [multiplayer_pong](https://github.com/godotengine/godot-demo-projects/tree/master/networking/multiplayer_pong)
     - [websocket_chat](https://github.com/godotengine/godot-demo-projects/tree/master/networking/websocket_chat)
     - however, these others look promising too:
-    	- https://www.youtube.com/watch?v=K62jDMLPToA
+      - https://www.youtube.com/watch?v=K62jDMLPToA
       - https://www.youtube.com/watch?v=_ItA2r69c-Q
 - [inputs](https://docs.godotengine.org/en/stable/tutorials/inputs/index.html)
 - [3D reference](https://docs.godotengine.org/en/stable/tutorials/3d/index.html)
 - [scripting](https://docs.godotengine.org/en/stable/tutorials/scripting/index.html):
-	- [GDScript](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/index.html#toc-learn-scripting-gdscript)
-		- For syntax notes on things like `&"` and `^"`, Ctrl+F in this page: [GDScript basics, including syntax notes](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html)
-		  - `$Player.position` and `$UserInterface/Retry.show()`
+  - [GDScript](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/index.html#toc-learn-scripting-gdscript)
+    - For syntax notes on things like `&"` and `^"`, Ctrl+F in this page: [GDScript basics, including syntax notes](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html)
+      - `$Player.position` and `$UserInterface/Retry.show()`
 - [exporting](https://docs.godotengine.org/en/stable/tutorials/export/exporting_projects.html)
-	- you'll need to have downloaded "Export templates"
-		- from within Godot, Export Template Manager > Download and Install, or
- 		- from links lower down in this page https://godotengine.org/download and then Install Export Templates so that you can use them to export (without red error messages preventing Export Project)
+  - you'll need to have downloaded "Export templates"
+    - from within Godot, Export Template Manager > Download and Install, or
+     - from links lower down in this page https://godotengine.org/download and then Install Export Templates so that you can use them to export (without red error messages preventing Export Project)
 
 animation tips from DevWorm: https://youtu.be/XbDh2GAshBA?feature=shared
 
@@ -63,7 +63,7 @@ For Ctrl+F convenience to remind myself of things:
   - cmd + d = duplicate
   - cmd + c --> cmd + v = create child
   - you can _click_ in the animation panel and _then_ control animations:
-		- d = play
+    - d = play
     - s = stop
     - s double-tap = start
 - you can mix scripting languages as needed (e.g. use C# only to implement complex algorithms with better performance)
@@ -74,7 +74,7 @@ For Ctrl+F convenience to remind myself of things:
     - the **_listener_**/target node will have the callback written in its script
     - ```gd
       func _on_button_pressed(): # you'll see a "->]" icon on the left side of this func
-  	    set_process(not is_processing()) # toggle whether _process(delta) is running
+        set_process(not is_processing()) # toggle whether _process(delta) is running
       ```
     - (note: the listener/target node can also be itself, e.g. Area2D `body_entered(body:Node2D)` signal `-->]` `func _on_body_entered(_body)` in the script file of same node)
   - through code (needed when creating nodes inside of a script):
@@ -146,25 +146,25 @@ For Ctrl+F convenience to remind myself of things:
 - for how to place points on a `Path3D`, see the instructions+images at https://docs.godotengine.org/en/stable/getting_started/first_3d_game/05.spawning_mobs.html
   - spawn points setup: `PathFollow3D` node as _child_ of `Path3D` node; `Path` = path, `PathFollow` = to select locations on that path
 - GUI? add a `Control`! as well as the other things nested under it in the search for the "Create New Node" window
-	- e.g. `Label`, which has a default `text` property: `text = "Score: %s" % score` or `text = "Score: %s" % [score,]`
- 		- (note: in a more complex game, you might want to store data like score in a dedicated object instead of in a `Label.text`)
-	- the `Control`'s Theme panel will be accessible in a bottom tab
-	- the `Control`'s children will inherit its theme, e.g. font (Inspector > Control > Theme > Default Font > click to expand details > Resource > Path > choose a font file).
- 	- to make a child `Label` or `ColorRect` position relative to or fill its parent `Control` and make that parent in turn fill the viewport too:
-  	- select the `ColorRect` > click the green smash-bros-like icon for Anchor preset in the top bar > Full Rect (anchor value is relative to its parent).
-  	- select the `Control` > Inspector > Control > Layout > Anchors preset > Full Rect (anchor value is relative to its parent).
+  - e.g. `Label`, which has a default `text` property: `text = "Score: %s" % score` or `text = "Score: %s" % [score,]`
+     - (note: in a more complex game, you might want to store data like score in a dedicated object instead of in a `Label.text`)
+  - the `Control`'s Theme panel will be accessible in a bottom tab
+  - the `Control`'s children will inherit its theme, e.g. font (Inspector > Control > Theme > Default Font > click to expand details > Resource > Path > choose a font file).
+   - to make a child `Label` or `ColorRect` position relative to or fill its parent `Control` and make that parent in turn fill the viewport too:
+    - select the `ColorRect` > click the green smash-bros-like icon for Anchor preset in the top bar > Full Rect (anchor value is relative to its parent).
+    - select the `Control` > Inspector > Control > Layout > Anchors preset > Full Rect (anchor value is relative to its parent).
 - nodes (like `mob`) created in code, need code to connect their signals:
-	- e.g.: `mob.squashed.connect($UserInterface/ScoreLabel._on_Mob_squashed)` in Main.gd, where:
-		- `signal squashed` in Mob.gd
-  	- `func _on_Mob_squashed():` in Main/UserInterface/ScoreLabel.gd
+  - e.g.: `mob.squashed.connect($UserInterface/ScoreLabel._on_Mob_squashed)` in Main.gd, where:
+    - `signal squashed` in Mob.gd
+    - `func _on_Mob_squashed():` in Main/UserInterface/ScoreLabel.gd
 - to have music [autoload](https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html#doc-singletons-autoload) and automatically restart the music on game start:
-	- attach music to the root viewport node (**_NOT under the Main node!_**): new scene > add `AudioStreamPlayer` > Inspector > AudioStreamPlayer > Stream > click to expand > Resource > select an audio file and make sure to checkmark Autoplay! you can also see if it loops in the expanded Stream menu items.
- 	- [autoload](https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html#doc-singletons-autoload) music: Project > Project Settings... > Autoload > Add (Path = scene node, e.g. AudioStreamPlayer.tscn)
-  	- will restart with game restart triggered by code: `get_tree().reload_current_scene() # get the SceneTree`
+  - attach music to the root viewport node (**_NOT under the Main node!_**): new scene > add `AudioStreamPlayer` > Inspector > AudioStreamPlayer > Stream > click to expand > Resource > select an audio file and make sure to checkmark Autoplay! you can also see if it loops in the expanded Stream menu items.
+   - [autoload](https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html#doc-singletons-autoload) music: Project > Project Settings... > Autoload > Add (Path = scene node, e.g. AudioStreamPlayer.tscn)
+    - will restart with game restart triggered by code: `get_tree().reload_current_scene() # get the SceneTree`
 - animation Autoplay on Load: the button turns blue when on, and looks like an A+ inside an arrow.
 - stylistic tip for animations: in general, _don't_ time and space everything evenly = offset and contrast give a certain feeling.
 - you can copy an animation if copying to a similar structure of nodes:
-	- select an `AnimationPlayer` node > select an animation > click on "Animation" > Manage Animations... > click on the copy icon (looks ike 2 pieces of paper stacked) > OK > select a similar node > select its `AnimationPlayer` node > click on "Animation" > Manage Animations... > click on the paste icon (looks like a clipboard)
+  - select an `AnimationPlayer` node > select an animation > click on "Animation" > Manage Animations... > click on the copy icon (looks ike 2 pieces of paper stacked) > OK > select a similar node > select its `AnimationPlayer` node > click on "Animation" > Manage Animations... > click on the paste icon (looks like a clipboard)
 
 ## more example GDScripts:
 
@@ -350,60 +350,60 @@ signal hit
 
 
 func _physics_process(delta): # better than _process(delta) for physics
-	var direction = Vector3.ZERO
-	if Input.is_action_pressed("move_right"):
-		direction.x += 1
-	if Input.is_action_pressed("move_left"):
-		direction.x -= 1
-	if Input.is_action_pressed("move_back"):
-		direction.z += 1
-	if Input.is_action_pressed("move_forward"):
-		direction.z -= 1
+  var direction = Vector3.ZERO
+  if Input.is_action_pressed("move_right"):
+    direction.x += 1
+  if Input.is_action_pressed("move_left"):
+    direction.x -= 1
+  if Input.is_action_pressed("move_back"):
+    direction.z += 1
+  if Input.is_action_pressed("move_forward"):
+    direction.z -= 1
 
-	if direction != Vector3.ZERO:
-		direction = direction.normalized()
-		basis = Basis.looking_at(direction) # use built-in basis property to rotate the player
+  if direction != Vector3.ZERO:
+    direction = direction.normalized()
+    basis = Basis.looking_at(direction) # use built-in basis property to rotate the player
     $AnimationPlayer.speed_scale = 4 # speed up animation
-	else:
-		$AnimationPlayer.speed_scale = 1
+  else:
+    $AnimationPlayer.speed_scale = 1
 
-	velocity.x = direction.x * speed # left/right
-	velocity.z = direction.z * speed # forward/back
+  velocity.x = direction.x * speed # left/right
+  velocity.z = direction.z * speed # forward/back
 
-	# velocity.y + jumping up:
-	if is_on_floor() and Input.is_action_just_pressed("jump"):
-		velocity.y += jump_impulse
+  # velocity.y + jumping up:
+  if is_on_floor() and Input.is_action_just_pressed("jump"):
+    velocity.y += jump_impulse
 
-	# velocity.y - falling down:
-	velocity.y -= fall_acceleration * delta
+  # velocity.y - falling down:
+  velocity.y -= fall_acceleration * delta
 
   move_and_slide() # to smooth out physics motion
 
-	# Here, we check if we landed on top of a mob and if so, we kill it and bounce.
-	# With move_and_slide(), Godot makes the body move sometimes multiple times in a row to
-	# smooth out the character's motion. So we have to loop over all collisions that may have
-	# happened.
-	# If there are no "slides" this frame, the loop below won't run.
-	for index in range(get_slide_collision_count()): # check all collisions over move_and_slide():
-		var collision = get_slide_collision(index)
-		if collision.get_collider().is_in_group("mob"): # if hit mob:
-			var mob = collision.get_collider()
-			if Vector3.UP.dot(collision.get_normal()) > 0.1: # if the collision happened roughly above the mob:
-				mob.squash() # call the custom squash() function of that mob instance's Mob.gd script
-				velocity.y = bounce_impulse
-				break # escape the for-loop to avoid over-counting squashing 1 mob
+  # Here, we check if we landed on top of a mob and if so, we kill it and bounce.
+  # With move_and_slide(), Godot makes the body move sometimes multiple times in a row to
+  # smooth out the character's motion. So we have to loop over all collisions that may have
+  # happened.
+  # If there are no "slides" this frame, the loop below won't run.
+  for index in range(get_slide_collision_count()): # check all collisions over move_and_slide():
+    var collision = get_slide_collision(index)
+    if collision.get_collider().is_in_group("mob"): # if hit mob:
+      var mob = collision.get_collider()
+      if Vector3.UP.dot(collision.get_normal()) > 0.1: # if the collision happened roughly above the mob:
+        mob.squash() # call the custom squash() function of that mob instance's Mob.gd script
+        velocity.y = bounce_impulse
+        break # escape the for-loop to avoid over-counting squashing 1 mob
 
-	# this makes the character follow a nice arc when jumping:
-	rotation.x = PI / 6 * velocity.y / jump_impulse
+  # this makes the character follow a nice arc when jumping:
+  rotation.x = PI / 6 * velocity.y / jump_impulse
 
 
 func die():
-	hit.emit() # emit custom signal
-	queue_free() # clear this node from memory
+  hit.emit() # emit custom signal
+  queue_free() # clear this node from memory
 
 
 func _on_MobDetector_body_entered(_body):
-	die()
+  die()
 ```
 
 ```gd
