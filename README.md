@@ -31,7 +31,9 @@ best practices [manual](https://docs.godotengine.org/en/stable/tutorials/best_pr
 		- For syntax notes on things like `&"` and `^"`, Ctrl+F in this page: [GDScript basics, including syntax notes](https://docs.godotengine.org/en/stable/tutorials/scripting/gdscript/gdscript_basics.html)
 		  - `$Player.position` and `$UserInterface/Retry.show()`
 - [exporting](https://docs.godotengine.org/en/stable/tutorials/export/exporting_projects.html)
-	- you'll need to have downloaded "Export templates" from links lower down (in this page https://godotengine.org/download) and then Install Export Templates so that you can use them to export (without red error messages preventing Export Project)
+	- you'll need to have downloaded "Export templates"
+		- from within Godot, Export Template Manager > Download and Install, or
+ 		- from links lower down in this page https://godotengine.org/download and then Install Export Templates so that you can use them to export (without red error messages preventing Export Project)
 
 animation tips from DevWorm: https://youtu.be/XbDh2GAshBA?feature=shared
 
