@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "dev": "python -m http.server 8000",
+        "deploy": "surge . https://hchiam-godot-multiplayer.surge.sh"
+    }
+}
