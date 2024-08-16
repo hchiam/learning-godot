@@ -33,7 +33,7 @@ best practices [manual](https://docs.godotengine.org/en/stable/tutorials/best_pr
 - [exporting](https://docs.godotengine.org/en/stable/tutorials/export/exporting_projects.html)
   - you'll need to have downloaded "Export templates"
     - from within Godot, Export Template Manager > Download and Install, or
-     - from links lower down in this page https://godotengine.org/download and then Install Export Templates so that you can use them to export (without red error messages preventing Export Project)
+    - from links lower down in this page https://godotengine.org/download and then Install Export Templates so that you can use them to export (without red error messages preventing Export Project)
 
 animation tips from DevWorm: https://youtu.be/XbDh2GAshBA?feature=shared
 
@@ -147,20 +147,20 @@ For Ctrl+F convenience to remind myself of things:
   - spawn points setup: `PathFollow3D` node as _child_ of `Path3D` node; `Path` = path, `PathFollow` = to select locations on that path
 - GUI? add a `Control`! as well as the other things nested under it in the search for the "Create New Node" window
   - e.g. `Label`, which has a default `text` property: `text = "Score: %s" % score` or `text = "Score: %s" % [score,]`
-     - (note: in a more complex game, you might want to store data like score in a dedicated object instead of in a `Label.text`)
+    - (note: in a more complex game, you might want to store data like score in a dedicated object instead of in a `Label.text`)
   - the `Control`'s Theme panel will be accessible in a bottom tab
   - the `Control`'s children will inherit its theme, e.g. font (Inspector > Control > Theme > Default Font > click to expand details > Resource > Path > choose a font file).
-   - to make a child `Label` or `ColorRect` position relative to or fill its parent `Control` and make that parent in turn fill the viewport too:
-    - select the `ColorRect` > click the green smash-bros-like icon for Anchor preset in the top bar > Full Rect (anchor value is relative to its parent).
-    - select the `Control` > Inspector > Control > Layout > Anchors preset > Full Rect (anchor value is relative to its parent).
+    - to make a child `Label` or `ColorRect` position relative to or fill its parent `Control` and make that parent in turn fill the viewport too:
+      - select the `ColorRect` > click the green smash-bros-like icon for Anchor preset in the top bar > Full Rect (anchor value is relative to its parent).
+      - select the `Control` > Inspector > Control > Layout > Anchors preset > Full Rect (anchor value is relative to its parent).
 - nodes (like `mob`) created in code, need code to connect their signals:
   - e.g.: `mob.squashed.connect($UserInterface/ScoreLabel._on_Mob_squashed)` in Main.gd, where:
     - `signal squashed` in Mob.gd
     - `func _on_Mob_squashed():` in Main/UserInterface/ScoreLabel.gd
 - to have music [autoload](https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html#doc-singletons-autoload) and automatically restart the music on game start:
   - attach music to the root viewport node (**_NOT under the Main node!_**): new scene > add `AudioStreamPlayer` > Inspector > AudioStreamPlayer > Stream > click to expand > Resource > select an audio file and make sure to checkmark Autoplay! you can also see if it loops in the expanded Stream menu items.
-   - [autoload](https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html#doc-singletons-autoload) music: Project > Project Settings... > Autoload > Add (Path = scene node, e.g. AudioStreamPlayer.tscn)
-    - will restart with game restart triggered by code: `get_tree().reload_current_scene() # get the SceneTree`
+    - [autoload](https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html#doc-singletons-autoload) music: Project > Project Settings... > Autoload > Add (Path = scene node, e.g. AudioStreamPlayer.tscn)
+      - will restart with game restart triggered by code: `get_tree().reload_current_scene() # get the SceneTree`
 - animation Autoplay on Load: the button turns blue when on, and looks like an A+ inside an arrow.
 - stylistic tip for animations: in general, _don't_ time and space everything evenly = offset and contrast give a certain feeling.
 - you can copy an animation if copying to a similar structure of nodes:
