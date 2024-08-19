@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://cyfwty2q3rdse"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_0r6n5"]
+[ext_resource type="PackedScene" uid="uid://rkdnhqgf2hpj" path="res://chicken.tscn" id="2_50pww"]
+[ext_resource type="PackedScene" uid="uid://4vwrqjegqwpj" path="res://player.tscn" id="3_veqnc"]
+[ext_resource type="PackedScene" uid="uid://ccqoreueuxdb7" path="res://hud.tscn" id="4_0qnje"]
+[ext_resource type="AudioStream" uid="uid://hofas6q0v2jv" path="res://art/little-happy-chip-tune.ogg" id="5_dc7ke"]
+[ext_resource type="AudioStream" uid="uid://ktnnfs6hjodk" path="res://art/chicken.wav" id="6_fcntq"]
+[ext_resource type="Texture2D" uid="uid://do5ppqlmowibo" path="res://art/chicken.png" id="6_ykoy0"]
+[ext_resource type="Texture2D" uid="uid://8671e5b6wvt" path="res://art/chicken_tilted.png" id="7_eojw6"]
+
+[sub_resource type="Curve2D" id="1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 0)
+}
+point_count = 5
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mpxal"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ykoy0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_eojw6")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 4.0
+}]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_0r6n5")
+chicken_node = ExtResource("2_50pww")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Player" parent="." instance=ExtResource("3_veqnc")]
+collision_mask = 6
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(240, 450)
+
+[node name="MobPath" type="Path2D" parent="."]
+curve = SubResource("1")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+
+[node name="ChickenAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(397, 230)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_mpxal")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="HUD" parent="." instance=ExtResource("4_0qnje")]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_dc7ke")
+parameters/looping = true
+
+[node name="ChickenCaughtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_fcntq")
+
+[connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]

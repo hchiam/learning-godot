@@ -67,11 +67,18 @@ For Ctrl+F convenience to remind myself of things:
     - d = play
     - s = stop
     - s double-tap = start
+  - cmd + shift + d = toggle collapse/expand side panels
+  - option + o = toggle collapse/expand Output panel
+  - option + d = toggle collapse/expand Debugger panel
 - you can mix scripting languages as needed (e.g. use C# only to implement complex algorithms with better performance)
 - to add an image as a texture to a Sprite2D: Inspector > Texture > click to show dropdown > Load...
 - to add a script to a node: Scene > right-click > Attach Script...
 - to connect a signal:
-  - through the editor: select a node > Node panel > double-click a signal for that node > select a node that has a script (a receiver method will be auto-named) > Connect
+  - through the editor: select a node in the left-side panel that's within the currently-displayed scene tree > Node panel on the right > double-click a signal for that node > select a node that has a script (a receiver method will be auto-named) > Connect
+    - (if you want a different node from the node that's sending a signal, you need both displayed in the left-side scene tree)
+    - (but if you want to send a signal to a parent, i.e. parent instantiates the node that emits a signal, you should [connect the signal with code](https://docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html#connecting-a-signal-via-code))
+      - make mob fire signal as usual: `signal caught` and `func _on_area_2d_area_entered(area): caught.emit()`
+      - make node that instantiates mobs listen to that mob instance's emitted signal: `var mob = mob_scene.instantiate(); mob.connect("caught", Callable(self, "_on_mob_caught")); func _on_mob_caught(): # update score`
     - the **_listener_**/target node will have the callback written in its script
     - ```gd
       func _on_button_pressed(): # you'll see a "->]" icon on the left side of this func
@@ -104,6 +111,7 @@ For Ctrl+F convenience to remind myself of things:
 - use a `ColorRect` for a solid colour background
 - use a `TextureRect` for an image background
 - use an `AudioStreamPlayer` for music/sound: Inspector > AudioStreamPlayer > Stream > (you can expand to show more settings, like Loop)
+  - to make music loop, you likely can't use .wav, and instead use .ogg in Inspector > AudioStreamPlayer > Parameters > Looping
 - a `Label`'s font can be set in: Inspector > Control > Theme Overrides > Fonts
 - a `Label`'s size can be set in: Inspector > Control > Layout > Transform > Size
 - to see predefined actions or create custom-named action bindings that map to multiple input devices: Project > Project settings > Input Map
@@ -125,6 +133,7 @@ For Ctrl+F convenience to remind myself of things:
   - consider adding child `AnimationPlayer`
 - `CharacterBody3D` has a native `move_and_slide()` function you can call at the end of your `func _physics_process(delta):` to smooth out motion
 - `CharacterBody3D` has a native `look_at_from_position(start_position, position_of_target_to_face_towards, Vector3.UP)` function (3rd param = which way is up axis to rotate around)
+  - useful for 2D as well: `look_at(player.position)` (you might need to `@export var player: PackedScene` at the top of your code)
 - `CharacterBody3D` has a native `rotate_y(randf_range(-PI / 4, PI / 4))` function that you can call after `look_at_from_position` to further adjust rotation.
 - `CharacterBody3D` has a native `is_on_floor()` function that uses `up_direction` and `floor_max_angle` to determine whether a surface is a "floor".
 - rotate the player with `basis = Basis.looking_at(direction)`
@@ -155,9 +164,10 @@ For Ctrl+F convenience to remind myself of things:
       - select the `ColorRect` > click the green smash-bros-like icon for Anchor preset in the top bar > Full Rect (anchor value is relative to its parent).
       - select the `Control` > Inspector > Control > Layout > Anchors preset > Full Rect (anchor value is relative to its parent).
 - nodes (like `mob`) created in code, need code to connect their signals:
-  - e.g.: `mob.squashed.connect($UserInterface/ScoreLabel._on_Mob_squashed)` in Main.gd, where:
+  - e.g.: in Godot 4: `mob.squashed.connect($UserInterface/ScoreLabel._on_Mob_squashed)` in Main.gd, where:
     - `signal squashed` in Mob.gd
     - `func _on_Mob_squashed():` in Main/UserInterface/ScoreLabel.gd
+  - e.g.: in Godot 3: `mob.connect("squashed", Callable($UserInterface/ScoreLabel._on_Mob_squashed, "_on_Mob_squashed"))`
 - to have music [autoload](https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html#doc-singletons-autoload) and automatically restart the music on game start:
   - attach music to the root viewport node (**_NOT under the Main node!_**): new scene > add `AudioStreamPlayer` > Inspector > AudioStreamPlayer > Stream > click to expand > Resource > select an audio file and make sure to checkmark Autoplay! you can also see if it loops in the expanded Stream menu items.
     - [autoload](https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html#doc-singletons-autoload) music: Project > Project Settings... > Autoload > Add (Path = scene node, e.g. AudioStreamPlayer.tscn)
@@ -166,6 +176,7 @@ For Ctrl+F convenience to remind myself of things:
 - stylistic tip for animations: in general, _don't_ time and space everything evenly = offset and contrast give a certain feeling.
 - you can copy an animation if copying to a similar structure of nodes:
   - select an `AnimationPlayer` node > select an animation > click on "Animation" > Manage Animations... > click on the copy icon (looks ike 2 pieces of paper stacked) > OK > select a similar node > select its `AnimationPlayer` node > click on "Animation" > Manage Animations... > click on the paste icon (looks like a clipboard)
+- .gitignore the .godot folder - the editor auto-generates the .godot folder
 
 ## more example GDScripts:
 
