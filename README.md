@@ -35,6 +35,8 @@ best practices [manual](https://docs.godotengine.org/en/stable/tutorials/best_pr
     - from within Godot, Export Template Manager > Download and Install, or
     - from links lower down in this page https://godotengine.org/download and then Install Export Templates so that you can use them to export (without red error messages preventing Export Project)
   - helpful Godot 4 export to itch.io tutorial: https://www.youtube.com/watch?v=JPL4-rXZNW8&t=131s
+  - my personal example: https://hchiam.itch.io/catch-the-chicken-game
+- to [check if on mobile](https://docs.godotengine.org/en/stable/tutorials/export/feature_tags.html): `if OS.has_feature("web_android") or OS.has_feature("web_ios"):`
 
 animation tips from DevWorm: https://youtu.be/XbDh2GAshBA?feature=shared
 

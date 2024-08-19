@@ -14,7 +14,13 @@ func new_game():
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	$Music.play()
+	if OS.has_feature("web_android") or OS.has_feature("web_ios"):
+		show_buttons()
 	spawn_chicken()
+
+
+func show_buttons():
+	$HUD.show_message("Sorry, mobile support coming soon.")
 
 
 func spawn_chicken():
