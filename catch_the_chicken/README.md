@@ -1,5 +1,6 @@
 # Notes to self:
 
+- export WITHOUT debug
 - make sure to rename "Catch the Chicken Game.html" to "index.html"
 - `bash zip.sh`
 - [exporting](https://docs.godotengine.org/en/stable/tutorials/export/exporting_projects.html)

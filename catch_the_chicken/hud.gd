@@ -24,11 +24,13 @@ func update_score(score):
 
 func _on_StartButton_pressed():
 	$StartButton.hide()
+	$CreditsButton.hide()
+	$CreditsLabel.hide()
 	start_game.emit()
 	if OS.has_feature("web_android") or OS.has_feature("web_ios"):
 		show_movement_buttons()
 	else:
-		show_message("◀►▲▼ or WASD to move")
+		show_message("Arrow keys or WASD to move")
 
 
 func _on_MessageTimer_timeout():
@@ -97,3 +99,8 @@ func _on_right_button_up():
 	ev.action = "move_right"
 	ev.pressed = false
 	Input.parse_input_event(ev)
+
+
+func _on_credits_button_pressed():
+	$CreditsButton.hide()
+	$CreditsLabel.show()
