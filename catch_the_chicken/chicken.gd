@@ -27,7 +27,7 @@ func _on_area_2d_area_entered(area):
 	# disable while accounting for physics:
 	$Area2D/CollisionShape2D.set_deferred('disabled', true)
 	
-	linear_velocity = Vector2.ZERO
+	#linear_velocity = Vector2.ZERO
 	
 	caught.emit()
 	

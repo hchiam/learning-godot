@@ -62,5 +62,85 @@ text = "Start"
 [node name="MessageTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Up" type="Button" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -300.0
+offset_right = 50.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_2jm3i")
+theme_override_font_sizes/font_size = 60
+shortcut = SubResource("4")
+text = "▲"
+
+[node name="Down" type="Button" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -105.0
+offset_right = 50.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_2jm3i")
+theme_override_font_sizes/font_size = 60
+shortcut = SubResource("4")
+text = "▼"
+
+[node name="Left" type="Button" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -204.0
+offset_right = -50.0
+offset_bottom = -104.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_2jm3i")
+theme_override_font_sizes/font_size = 60
+shortcut = SubResource("4")
+text = "◀"
+
+[node name="Right" type="Button" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = -204.0
+offset_right = 150.0
+offset_bottom = -104.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_2jm3i")
+theme_override_font_sizes/font_size = 60
+shortcut = SubResource("4")
+text = "►"
+
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_MessageTimer_timeout"]
+[connection signal="button_down" from="Up" to="." method="_on_up_button_down"]
+[connection signal="button_up" from="Up" to="." method="_on_up_button_up"]
+[connection signal="button_down" from="Down" to="." method="_on_down_button_down"]
+[connection signal="button_up" from="Down" to="." method="_on_down_button_up"]
+[connection signal="button_down" from="Left" to="." method="_on_left_button_down"]
+[connection signal="button_up" from="Left" to="." method="_on_left_button_up"]
+[connection signal="button_down" from="Right" to="." method="_on_right_button_down"]
+[connection signal="button_up" from="Right" to="." method="_on_right_button_up"]

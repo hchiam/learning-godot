@@ -15,7 +15,8 @@ config/description="This is a Godot remake of a simple game I made in highschool
 config/tags=PackedStringArray("2d", "demo", "official")
 run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.3")
-config/icon="res://icon.webp"
+boot_splash/image="res://art/logo.png"
+config/icon="res://art/chicken.png"
 
 [display]
 

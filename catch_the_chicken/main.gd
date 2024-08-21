@@ -1,7 +1,7 @@
 extends Node
 
 @export var chicken_node: PackedScene
-var score
+var score = 0
 var instanceCounter = 0
 
 
@@ -9,28 +9,21 @@ func new_game():
 	get_tree().call_group(&"mobs", &"queue_free")
 	score = 0
 	$ChickenAnimation.hide()
+	$PlayerAnimation.hide()
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	$Music.play()
-	if OS.has_feature("web_android") or OS.has_feature("web_ios"):
-		show_buttons()
 	spawn_chicken()
 
 
-func show_buttons():
-	$HUD.show_message("Sorry, mobile support coming soon.")
-
-
 func spawn_chicken():
-	if instanceCounter == 0 and score >= 100:
-		$HUD.show_message("You reached the end! Thanks for playing!")
+	if score >= 100:
+		$HUD.show_final_message("You reached the end! Thanks for playing!")
 	
-	if instanceCounter > 0 or score > 100:
+	if instanceCounter > 0 and (score > 70 and score < 100):
 		return
-	
-	instanceCounter += 1
 	
 	var chicken = chicken_node.instantiate()
 	
@@ -51,7 +44,7 @@ func spawn_chicken():
 		chicken.position = mob_spawn_location.position
 	else:
 		var viewportSizeVector = get_viewport().size
-		var minDistanceFromPlayer = 150
+		var minDistanceFromPlayer = 125
 		var chickenSize = chicken.get_chicken_size()
 		while true:
 			var randomX = randf_range(chickenSize, viewportSizeVector.x - chickenSize)
@@ -71,6 +64,7 @@ func spawn_chicken():
 	chicken.wentOffScreen.connect(_on_chicken_off_screen)
 	
 	add_child(chicken)
+	instanceCounter = 1
 
 
 func _on_chicken_caught():
@@ -82,7 +76,8 @@ func _on_chicken_caught():
 	if instanceCounter == 1:
 		instanceCounter = 0
 		spawn_chicken()
-		if score > 30 and score < 70:
+		# hack to double-spawn on purpose:
+		if score >= 30 and score < 70:
 			spawn_chicken()
 
 
