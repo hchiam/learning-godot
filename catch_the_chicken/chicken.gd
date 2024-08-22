@@ -70,7 +70,7 @@ func _physics_process(delta):
 
 
 func avoid_edges(delta):
-	var viewport_size = get_viewport().size
+	var viewport_size = get_viewport_rect().size
 	var screen_margin = -1 # so 0 is fine, to allow animations at start
 	
 	if (position.x < screen_margin 

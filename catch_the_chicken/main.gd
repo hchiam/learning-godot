@@ -43,8 +43,8 @@ func spawn_chicken():
 		chicken.linear_velocity = velocity.rotated(direction)
 		chicken.position = mob_spawn_location.position
 	else:
-		var viewportSizeVector = get_viewport().size
-		var minDistanceFromPlayer = 125
+		var viewportSizeVector = get_viewport().get_visible_rect().size
+		var minDistanceFromPlayer = 150
 		var chickenSize = chicken.get_chicken_size()
 		while true:
 			var randomX = randf_range(chickenSize, viewportSizeVector.x - chickenSize)
