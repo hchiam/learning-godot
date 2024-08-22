@@ -431,3 +431,13 @@ $AnimationPlayer.speed_scale = 1
 # ...
 $Pivot.rotation.x = PI / 6 * velocity.y / jump_impulse
 ```
+
+```gd
+# to get viewport size:
+# DON'T use this:
+get_viewport().size # gave me incorrect values after screen resize (e.g. fullscreen)
+# USE this:
+get_viewport().get_visible_rect().size # e.g. inside the GDScript of a Node
+# or when available:
+get_viewport_rect().size # e.g. inside the GDScript of a CanvasItem or a RigidBody2D
+```
